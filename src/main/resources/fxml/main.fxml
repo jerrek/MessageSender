@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0"
+            prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ru.digital.legue.messagesender.ui.MainController">
+    <VBox alignment="CENTER" spacing="5">
+        <HBox alignment="TOP_CENTER" layoutX="21.0" layoutY="207.0"
+              AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+            <TextArea fx:id="inputData" prefWidth="600" prefHeight="300"/>
+           <ImageView fitHeight="300" fitWidth="300">
+              <image>
+                 <Image url="autotestersphoto.png"/>
+              </image>
+           </ImageView>
+        </HBox>
+        <HBox alignment="TOP_LEFT" layoutX="21.0" layoutY="207.0"
+              AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+            <TextField accessibleText="false" fx:id="statusData" prefWidth="600" prefHeight="30" />
+        </HBox>
+        <HBox alignment="BOTTOM_LEFT" layoutX="21.0" layoutY="207.0"
+              AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+            <ComboBox prefHeight="20" prefWidth="300" fx:id="queues"/>
+            <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#sendMessage" text="Send message"/>
+        </HBox>
+       <HBox alignment="BOTTOM_LEFT" layoutX="21.0" layoutY="207.0"
+             AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+          <TextField accessibleText="false" fx:id="queueName" prefWidth="160" prefHeight="10" />
+          <TextField accessibleText="false" fx:id="wfName" prefWidth="160" prefHeight="10" />
+          <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#addQueue" text="Add queue"/>
+          <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteQueue" text="Delete queue"/>
+       </HBox>
+    </VBox>
+</AnchorPane>
