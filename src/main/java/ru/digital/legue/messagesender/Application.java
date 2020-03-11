@@ -37,7 +37,7 @@ public class Application extends AbstractJavaFxApplicationSupport {
     }
 
     public static void main(String[] args) {
-        launchApp(Application.class, args);
+        launchApp(args);
     }
 
     @Override

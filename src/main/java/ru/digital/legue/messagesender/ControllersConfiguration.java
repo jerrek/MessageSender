@@ -8,13 +8,14 @@ import ru.digital.legue.messagesender.ui.MainController;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Objects;
 
 @Configuration
 public class ControllersConfiguration {
 
     @Bean(name = "mainView")
     public ViewHolder getMainView() throws IOException {
-        return loadView("fxml/main.fxml");
+        return loadView();
     }
 
     @Bean(name = "mainController")
@@ -22,44 +23,31 @@ public class ControllersConfiguration {
         return (MainController) getMainView().getController();
     }
 
-    protected ViewHolder loadView(String url) throws IOException {
-        InputStream fxmlStream = null;
-        try {
-            fxmlStream = getClass().getClassLoader().getResourceAsStream(url);
+    private ViewHolder loadView() throws IOException {
+        try (InputStream fxmlStream = getClass().getClassLoader().getResourceAsStream("fxml/main.fxml")) {
             FXMLLoader loader = new FXMLLoader();
-            loader.load(fxmlStream);
+            loader.load(Objects.requireNonNull(fxmlStream));
             return new ViewHolder(loader.getRoot(), loader.getController());
-        } finally {
-            if (fxmlStream != null) {
-                fxmlStream.close();
-            }
         }
     }
 
-    public class ViewHolder {
+    static class ViewHolder {
         private Parent view;
         private Object controller;
 
-        public ViewHolder(Parent view, Object controller) {
+        ViewHolder(Parent view, Object controller) {
             this.view = view;
             this.controller = controller;
         }
 
-        public Parent getView() {
+        Parent getView() {
             return view;
         }
 
-        public void setView(Parent view) {
-            this.view = view;
-        }
-
-        public Object getController() {
+        Object getController() {
             return controller;
         }
 
-        public void setController(Object controller) {
-            this.controller = controller;
-        }
     }
 
 }

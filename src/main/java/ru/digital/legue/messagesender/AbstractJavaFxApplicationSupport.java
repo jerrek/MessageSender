@@ -8,11 +8,11 @@ public abstract class AbstractJavaFxApplicationSupport extends Application {
 
     private static String[] savedArgs;
 
-    protected ConfigurableApplicationContext context;
+    private ConfigurableApplicationContext context;
 
-    protected static void launchApp(Class<? extends AbstractJavaFxApplicationSupport> appClass, String[] args) {
+    static void launchApp(String[] args) {
         AbstractJavaFxApplicationSupport.savedArgs = args;
-        Application.launch(appClass, args);
+        Application.launch(ru.digital.legue.messagesender.Application.class, args);
     }
 
     @Override

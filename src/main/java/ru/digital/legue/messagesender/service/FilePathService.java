@@ -24,8 +24,4 @@ public class FilePathService {
     public void savePathToProps(String path) {
         repository.save(new FilePathEntity(0L, path));
     }
-
-    public Iterable<FilePathEntity> getAllPaths() {
-        return repository.findAll();
-    }
 }
