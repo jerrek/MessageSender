@@ -5,14 +5,22 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import ru.digital.legue.messagesender.services.MessageSender;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Random;
+
 
 public class MainController {
+    private Map<String, String> queuesWithWorkflow;
+    private File propertiesFile;
+    private MessageSender messageSender;
+    private final static String SUCCESS = "This is SUCCESS!";
+    private final static String FAIL = "Mission failed!";
     @FXML
     public TextArea inputData;
     @FXML
@@ -21,17 +29,17 @@ public class MainController {
     public TextField wfName;
     @FXML
     public TextField queueName;
-    private Map<String, String> queuesWithWorkflow;
-    private File propertiesFile;
     @FXML
     private ComboBox<String> queues;
 
     @FXML
     public void sendMessage() {
-        //TODO сюда вписать метод отправки
-        System.out.println("send message");
-        System.out.println(inputData.getText());
-        statusData.setText("SUCCESS!");
+        if (messageSender.sendMessage(inputData.getText(), queuesWithWorkflow.get(queues.getValue()))) {
+            statusData.setText(SUCCESS);
+        }else {
+            statusData.setText(FAIL);
+        }
+        someSecretMethod();
     }
 
     @FXML
@@ -79,5 +87,23 @@ public class MainController {
 
     public void setPropertiesFile(File propertiesFile) {
         this.propertiesFile = propertiesFile;
+    }
+
+    private void someSecretMethod() {
+        Random random = new Random();
+        int randomInt = random.nextInt(342);
+        if (randomInt == 42) {
+            statusData.setText("Мир иллюзия! Вселенная голограмма! Скупай золото!");
+        }
+        if (randomInt == 13) {
+            statusData.setText("IDDQD! Внедряй! Поддерживай! Не ссы!");
+        }
+        if (randomInt == 128) {
+            statusData.setText("WoobbaLoobbaDubDub!!!");
+        }
+    }
+
+    public void setMessageSender(MessageSender messageSender) {
+        this.messageSender = messageSender;
     }
 }
