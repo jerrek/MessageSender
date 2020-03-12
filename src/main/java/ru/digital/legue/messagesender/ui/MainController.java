@@ -38,8 +38,10 @@ public class MainController {
 
     @FXML
     public void sendMessage() {
-        if (queues.getValue() != null && queues.getValue().isEmpty()) {
-            statusData.setText(FAIL + "Choose queue!");
+        if (queues.getValue() == null || queues.getValue().isEmpty()) {
+            statusData.setText(FAIL + " Choose queue!");
+        } else if (inputData.getText() == null || inputData.getText().isEmpty()) {
+            statusData.setText(FAIL + " Input text!");
         } else {
             if (messageSender.sendMessage(inputData.getText(), queuesWithWorkflow.get(queues.getValue()))) {
                 statusData.setText(SUCCESS);
