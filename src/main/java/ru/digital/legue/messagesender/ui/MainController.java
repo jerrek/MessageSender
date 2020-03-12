@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.digital.legue.messagesender.services.MessageSender;
 
 import java.io.File;
@@ -16,11 +18,13 @@ import java.util.Random;
 
 
 public class MainController {
+    private static final Logger LOG = LoggerFactory.getLogger(MainController.class);
     private Map<String, String> queuesWithWorkflow;
     private File propertiesFile;
     private MessageSender messageSender;
-    private final static String SUCCESS = "This is SUCCESS!";
-    private final static String FAIL = "Mission failed!";
+    private static final String SUCCESS = "This is SUCCESS!";
+    private static final String FAIL = "Mission failed!";
+    private Random random = new Random();
     @FXML
     public TextArea inputData;
     @FXML
@@ -34,12 +38,17 @@ public class MainController {
 
     @FXML
     public void sendMessage() {
-        if (messageSender.sendMessage(inputData.getText(), queuesWithWorkflow.get(queues.getValue()))) {
-            statusData.setText(SUCCESS);
-        }else {
-            statusData.setText(FAIL);
+        if (queues.getValue() != null && queues.getValue().isEmpty()) {
+            statusData.setText(FAIL + "Choose queue!");
+        } else {
+            if (messageSender.sendMessage(inputData.getText(), queuesWithWorkflow.get(queues.getValue()))) {
+                statusData.setText(SUCCESS);
+            } else {
+                statusData.setText(FAIL);
+            }
+            someSecretMethod();
         }
-        someSecretMethod();
+
     }
 
     @FXML
@@ -69,11 +78,13 @@ public class MainController {
                 try {
                     fos.write(stringToWrite.getBytes());
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    LOG.debug(e.getMessage());
+                    LOG.debug(e.getCause().toString());
                 }
             });
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.debug(e.getMessage());
+            LOG.debug(e.getCause().toString());
         }
     }
 
@@ -90,7 +101,7 @@ public class MainController {
     }
 
     private void someSecretMethod() {
-        Random random = new Random();
+
         int randomInt = random.nextInt(342);
         if (randomInt == 42) {
             statusData.setText("Мир иллюзия! Вселенная голограмма! Скупай золото!");

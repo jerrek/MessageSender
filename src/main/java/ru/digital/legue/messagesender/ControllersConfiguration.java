@@ -4,8 +4,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import ru.digital.legue.messagesender.services.MessageSender;
-import ru.digital.legue.messagesender.services.MessageSenderService;
 import ru.digital.legue.messagesender.ui.MainController;
 
 import java.io.IOException;

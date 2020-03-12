@@ -17,6 +17,7 @@ public abstract class AbstractJavaFxApplicationSupport extends Application {
 
     @Override
     public void init() {
+        System.setProperty("spring.main.web-application-type", "none");
         context = SpringApplication.run(getClass(), savedArgs);
         context.getAutowireCapableBeanFactory().autowireBean(this);
     }

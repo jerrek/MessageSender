@@ -18,8 +18,8 @@
            </ImageView>
         </HBox>
         <HBox alignment="TOP_LEFT" layoutX="21.0" layoutY="207.0"
-              AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
-            <TextField accessibleText="false" fx:id="statusData" prefWidth="600" prefHeight="30" />
+              AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" spacing="25">
+            <TextField accessibleText="false" fx:id="statusData" prefWidth="600" prefHeight="30" text="STATUS"/>
         </HBox>
         <HBox alignment="BOTTOM_LEFT" layoutX="21.0" layoutY="207.0"
               AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
@@ -28,8 +28,8 @@
         </HBox>
        <HBox alignment="BOTTOM_LEFT" layoutX="21.0" layoutY="207.0"
              AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
-          <TextField accessibleText="false" fx:id="queueName" prefWidth="160" prefHeight="10" />
-          <TextField accessibleText="false" fx:id="wfName" prefWidth="160" prefHeight="10" />
+          <TextField accessibleText="false" fx:id="queueName" prefWidth="160" prefHeight="10" text="Имя очереди"/>
+          <TextField accessibleText="false" fx:id="wfName" prefWidth="160" prefHeight="10" text="Имя WorkFlow"/>
           <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#addQueue" text="Add queue"/>
           <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteQueue" text="Delete queue"/>
        </HBox>
